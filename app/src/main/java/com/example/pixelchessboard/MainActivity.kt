@@ -4,13 +4,23 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.pixelchessboard.ui.theme.PixelChessBoardTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,7 +30,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             PixelChessBoardTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
+                    ChessBoard(
                         name = "Android",
                         modifier = Modifier.padding(innerPadding)
                     )
@@ -31,17 +41,37 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+fun ChessBoard(name: String, modifier: Modifier = Modifier) {
+    val files = 'a'..'h'
+    val ranks = 1..8
+    Column(
+        modifier = modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        ranks.forEachIndexed { i, rank ->
+            Row {
+                files.forEachIndexed { j, file ->
+                    val color = if ((i + j) % 2 == 0) {
+                        Color.LightGray
+                    } else {
+                        Color.Black
+                    }
+                    Box(
+                        modifier = Modifier
+                            .size(42.dp)
+                            .background(color)
+                    )
+                }
+            }
+        }
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun ChessBoardPreview() {
     PixelChessBoardTheme {
-        Greeting("Android")
+        ChessBoard("Android")
     }
 }
