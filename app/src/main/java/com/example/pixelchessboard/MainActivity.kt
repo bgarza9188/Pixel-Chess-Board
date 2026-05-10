@@ -13,10 +13,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -31,7 +29,6 @@ class MainActivity : ComponentActivity() {
             PixelChessBoardTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     ChessBoard(
-                        name = "Android",
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -41,11 +38,11 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun ChessBoard(name: String, modifier: Modifier = Modifier) {
+fun ChessBoard(modifier: Modifier = Modifier) {
     val files = 'a'..'h'
     val ranks = 1..8
     Column(
-        modifier = modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize().background(Color.DarkGray),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -72,6 +69,6 @@ fun ChessBoard(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun ChessBoardPreview() {
     PixelChessBoardTheme {
-        ChessBoard("Android")
+        ChessBoard()
     }
 }
