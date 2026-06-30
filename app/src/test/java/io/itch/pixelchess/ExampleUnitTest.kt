@@ -1,4 +1,4 @@
-package com.example.pixelchessboard
+package io.itch.pixelchess
 
 import org.junit.Test
 

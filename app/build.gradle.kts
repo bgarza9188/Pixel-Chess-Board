@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.pixelchessboard"
+    namespace = "io.itch.curiouscompiler.pixelchess"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.pixelchessboard"
+        applicationId = "io.itch.curiouscompiler.pixelchess"
         minSdk = 24
         targetSdk = 36
         versionCode = 1

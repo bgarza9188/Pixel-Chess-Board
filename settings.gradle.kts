@@ -22,5 +22,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Pixel Chess Board"
+rootProject.name = "Pixel Chess"
 include(":app")

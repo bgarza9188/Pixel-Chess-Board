@@ -1,4 +1,4 @@
-package com.example.pixelchessboard.ui.theme
+package io.itch.curiouscompiler.pixelchess.ui.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

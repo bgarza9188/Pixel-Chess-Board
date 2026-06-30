@@ -1,4 +1,4 @@
-package com.example.pixelchessboard
+package io.itch.curiouscompiler.pixelchess
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -25,7 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.pixelchessboard.ui.theme.PixelChessBoardTheme
+import io.itch.curiouscompiler.pixelchess.ui.theme.PixelChessBoardTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
