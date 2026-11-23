@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.getValue
@@ -32,10 +33,21 @@ class MainActivity : ComponentActivity() {
                     Column(modifier = Modifier.fillMaxSize().padding(innerPadding),
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally) {
+                        val board by viewModel.board.observeAsState(initStandardBoard())
                         var pieceLabel by rememberSaveable { mutableStateOf("") }
                         Text(pieceLabel)
-                        val board by viewModel.board.observeAsState(initStandardBoard())
-                        ChessBoard(board, updateText = { pieceLabel = it })
+                        ChessBoard(
+                            board,
+                            onSelectSquare = viewModel::selectSquare,
+                            updateText = { pieceLabel = it }
+                        )
+                        Button(
+                            onClick = {
+                                viewModel.resetBoard()
+                            }
+                        ) {
+                            Text("RESET")
+                        }
                     }
                 }
             }

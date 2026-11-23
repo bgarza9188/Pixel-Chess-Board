@@ -9,7 +9,7 @@ val rankLabels = numberOfRanks downTo  1
 data class Square(
     val id: Int,
     val coordinate: String,
-    var piece: Piece = Piece.EMPTY,
+    val piece: Piece = Piece.EMPTY,
     val color: SquareColor = if (((floor((id / 8).toDouble()) + (id % 8)) % 2) == 0.0) { SquareColor.BLACK } else { SquareColor.WHITE }
 )
 

@@ -24,7 +24,11 @@ import io.itch.curiouscompiler.pixelchess.ui.theme.PixelChessBoardTheme
 private const val percentOfScreen = 0.9f
 
 @Composable
-fun ChessBoard(board: Array<Square>, updateText: (String) -> Unit) {
+fun ChessBoard(
+    board: Array<Square>,
+    onSelectSquare: (Char, Int) -> Unit,
+    updateText: (String) -> Unit
+) {
     BoxWithConstraints(
         contentAlignment = Alignment.Center
     ) {
@@ -39,6 +43,7 @@ fun ChessBoard(board: Array<Square>, updateText: (String) -> Unit) {
                                 .background(calculateSquareColor(file, rank, board))
                                 .clickable {
                                     updateText(getSquare(file, rank, board).piece.name)
+                                    onSelectSquare(file, rank)
                                 }
                         ) {
                             PlacePiece(file, rank, board)
@@ -71,6 +76,6 @@ private fun calculateMaxBoardSize(maxWidth: Dp, maxHeight: Dp): Dp {
 @Composable
 fun ChessBoardPreview() {
     PixelChessBoardTheme {
-        ChessBoard(emptyArray()) { }
+        ChessBoard(emptyArray(), { _, _ -> }, { _ -> })
     }
 }
