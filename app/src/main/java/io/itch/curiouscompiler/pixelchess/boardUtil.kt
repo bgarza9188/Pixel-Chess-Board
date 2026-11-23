@@ -32,13 +32,18 @@ fun getSquare(file: Char, rank: Int, board: Array<Square>): Square {
 
 fun standardPieceSetup(index: Int): Piece {
     return when (index) {
-        in 8 .. 15 -> Piece.PAWN
-        in 48 .. 55 -> Piece.PAWN
-        0, 7, 56, 63 -> Piece.ROOK
-        1, 6, 57, 62 -> Piece.KNIGHT
-        2, 5, 58, 61 -> Piece.BISHOP
-        3, 59 -> Piece.QUEEN
-        4, 60 -> Piece.KING
+        in 8 .. 15 -> Piece.PAWN_W
+        in 48 .. 55 -> Piece.PAWN_B
+        0, 7 -> Piece.ROOK_W
+        56, 63 -> Piece.ROOK_B
+        1, 6 -> Piece.KNIGHT_W
+        57, 62 -> Piece.KNIGHT_B
+        2, 5 -> Piece.BISHOP_W
+        58, 61 -> Piece.BISHOP_B
+        3 -> Piece.QUEEN_W
+        59 -> Piece.QUEEN_B
+        4 -> Piece.KING_W
+        60 -> Piece.KING_B
         else -> Piece.EMPTY
     }
 }
@@ -179,6 +184,6 @@ fun coordToIndex(coord: String): Int {
         "f8" -> 61
         "g8" -> 62
         "h8" -> 63
-        else -> 0
+        else -> -1
     }
 }

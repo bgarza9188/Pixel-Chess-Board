@@ -1,5 +1,6 @@
 package io.itch.curiouscompiler.pixelchess
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -11,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import io.itch.curiouscompiler.pixelchess.ui.theme.PixelChessBoardTheme
@@ -34,7 +36,9 @@ fun ChessBoard(board: Array<Square>, updateText: (String) -> Unit) {
                                 .clickable {
                                     updateText(getSquare(file, rank, board).piece.name)
                                 }
-                        )
+                        ) {
+                            PlacePiece(file, rank, board)
+                        }
                     }
                 }
             }
@@ -43,11 +47,105 @@ fun ChessBoard(board: Array<Square>, updateText: (String) -> Unit) {
 }
 
 @Composable
+private fun PlacePiece(file: Char, rank: Int, board: Array<Square>) {
+    val piece = getSquare(file, rank, board).piece
+    when (piece) {
+        Piece.KING_W -> {
+            Image(
+                painter = painterResource(R.drawable.chess_klt45),
+                contentDescription = null
+            )
+        }
+
+        Piece.QUEEN_W -> {
+            Image(
+                painter = painterResource(R.drawable.chess_qlt45),
+                contentDescription = null
+            )
+        }
+
+        Piece.ROOK_W -> {
+            Image(
+                painter = painterResource(R.drawable.chess_rlt45),
+                contentDescription = null
+            )
+        }
+
+        Piece.BISHOP_W -> {
+            Image(
+                painter = painterResource(R.drawable.chess_blt45),
+                contentDescription = null
+            )
+        }
+
+        Piece.KNIGHT_W -> {
+            Image(
+                painter = painterResource(R.drawable.chess_nlt45),
+                contentDescription = null
+            )
+        }
+
+        Piece.PAWN_W -> {
+            Image(
+                painter = painterResource(R.drawable.chess_plt45),
+                contentDescription = null
+            )
+        }
+
+        Piece.KING_B -> {
+            Image(
+                painter = painterResource(R.drawable.chess_kdt45),
+                contentDescription = null
+            )
+        }
+
+        Piece.QUEEN_B -> {
+            Image(
+                painter = painterResource(R.drawable.chess_qdt45),
+                contentDescription = null
+            )
+        }
+
+        Piece.ROOK_B -> {
+            Image(
+                painter = painterResource(R.drawable.chess_rdt45),
+                contentDescription = null
+            )
+        }
+
+        Piece.BISHOP_B -> {
+            Image(
+                painter = painterResource(R.drawable.chess_bdt45),
+                contentDescription = null
+            )
+        }
+
+        Piece.KNIGHT_B -> {
+            Image(
+                painter = painterResource(R.drawable.chess_ndt45),
+                contentDescription = null
+            )
+        }
+
+        Piece.PAWN_B -> {
+            Image(
+                painter = painterResource(R.drawable.chess_pdt45),
+                contentDescription = null
+            )
+        }
+
+        Piece.EMPTY -> {
+            /** no-op */
+        }
+    }
+}
+
+@Composable
 private fun calculateSquareColor(file: Char, rank: Int, board: Array<Square>): Color =
     if (getSquare(file, rank, board).color == SquareColor.WHITE) {
-        Color.LightGray
+        Color(0xFFFFF9C4)
     } else {
-        Color.Black
+        Color(0xFF4CAF50)//Green for now
     }
 
 @Composable
