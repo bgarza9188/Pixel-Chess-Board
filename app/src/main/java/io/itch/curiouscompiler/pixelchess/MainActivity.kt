@@ -22,15 +22,16 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        val board = initStandardBoard()
         setContent {
             PixelChessBoardTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Column(modifier = Modifier.fillMaxSize().padding(innerPadding),
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally) {
-                        var squareCoordinates by rememberSaveable { mutableStateOf("a1") }
-                        Text(squareCoordinates)
-                        ChessBoard(updateText = { squareCoordinates = it })
+                        var pieceLabel by rememberSaveable { mutableStateOf("empty") }
+                        Text(pieceLabel)
+                        ChessBoard(board, updateText = { pieceLabel = it })
                     }
                 }
             }

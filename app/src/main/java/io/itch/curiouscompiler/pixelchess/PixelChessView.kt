@@ -15,27 +15,24 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import io.itch.curiouscompiler.pixelchess.ui.theme.PixelChessBoardTheme
 
-private const val numberOfRanks = 8
 private const val percentOfScreen = 0.9f
-val files = 'a'..'h'
-val ranks = numberOfRanks downTo 1
 
 @Composable
-fun ChessBoard(updateText: (String) -> Unit) {
+fun ChessBoard(board: Array<Square>, updateText: (String) -> Unit) {
     BoxWithConstraints(
         contentAlignment = Alignment.Center
     ) {
         val boxWidth = calculateMaxBoardSize(maxWidth, maxHeight)
         Column {
-            ranks.forEachIndexed { i, rank ->
+            rankLabels.forEach { rank ->
                 Row {
-                    files.forEachIndexed { j, file ->
+                    fileLabels.forEach { file ->
                         Box(
                             modifier = Modifier
                                 .size(boxWidth)
-                                .background(calculateSquareColor(i, j))
+                                .background(calculateSquareColor(file, rank, board))
                                 .clickable {
-                                    updateText(file.toString() + rank.toString())
+                                    updateText(getSquare(file, rank, board).piece.name)
                                 }
                         )
                     }
@@ -46,8 +43,8 @@ fun ChessBoard(updateText: (String) -> Unit) {
 }
 
 @Composable
-private fun calculateSquareColor(i: Int, j: Int): Color =
-    if ((i + j) % 2 == 0) {
+private fun calculateSquareColor(file: Char, rank: Int, board: Array<Square>): Color =
+    if (getSquare(file, rank, board).color == SquareColor.WHITE) {
         Color.LightGray
     } else {
         Color.Black
@@ -66,6 +63,6 @@ private fun calculateMaxBoardSize(maxWidth: Dp, maxHeight: Dp): Dp {
 @Composable
 fun ChessBoardPreview() {
     PixelChessBoardTheme {
-        ChessBoard { }
+        ChessBoard(emptyArray()) { }
     }
 }
