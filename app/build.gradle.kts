@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "io.itch.curiouscompiler.pixelchess"
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "io.itch.curiouscompiler.pixelchess"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 37
         versionCode = 1
         versionName = "1.0"
 
@@ -37,6 +37,7 @@ kotlin {
 }
 
 dependencies {
+    implementation(libs.androidx.compose.runtime.livedata)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
