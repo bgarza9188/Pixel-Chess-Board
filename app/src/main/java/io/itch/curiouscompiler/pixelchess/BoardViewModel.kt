@@ -25,6 +25,10 @@ class BoardViewModel : ViewModel() {
         board.value?.let { board ->
             val currentSquare = getSquare(file, rank, board)
             if (_firstSelectedSquare.value == null) {
+                // Can't start a move from an empty square
+                if (currentSquare.piece == Piece.EMPTY) {
+                    return
+                }
                 //first selected not yet set
                 _firstSelectedSquare.value = currentSquare
             } else if (_firstSelectedSquare.value != currentSquare) {
